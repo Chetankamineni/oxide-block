@@ -1,0 +1,9 @@
+# Rust artifacts
+/target/
+
+# Generated WASM pkg (optional: keep if you want the extension to be "ready to run" on checkout)
+# /extension/pkg/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
