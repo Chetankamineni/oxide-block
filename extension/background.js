@@ -35,3 +35,10 @@ async function applyProtection() {
 
 chrome.runtime.onInstalled.addListener(applyProtection);
 chrome.runtime.onStartup.addListener(applyProtection);
+
+chrome.declarativeNetRequest.onRuleMatchedDebug.addListener((info) => {
+  chrome.storage.local.get("blockedTotal", (data) => {
+    const current = data.blockedTotal || 0;
+    chrome.storage.local.set({ blockedTotal: current + 1 });
+  });
+});
