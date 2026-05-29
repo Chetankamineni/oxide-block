@@ -24,6 +24,12 @@ struct Condition {
     resource_types: Vec<String>,
 }
 
+#[derive(Serialize)]
+pub struct HistoricalStats {
+    pub labels: Vec<String>,
+    pub dataset: Vec<u32>,
+}
+
 #[wasm_bindgen]
 pub fn parse_bulk_rules(raw_data: &str, starting_id: u32) -> JsValue {
     let mut current_id = starting_id;
@@ -70,7 +76,7 @@ pub fn generate_cosmetic_css(raw_data: &str) -> String {
     css_output
 }
 
-#[wasm_bingden] 
+#[wasm_bindgen] 
 pub fn get_historical_metrics() -> JsValue{
     let historical_data = HistoricalStats{
         labels: vec![
