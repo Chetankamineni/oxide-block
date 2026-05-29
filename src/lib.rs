@@ -69,3 +69,21 @@ pub fn generate_cosmetic_css(raw_data: &str) -> String {
     }
     css_output
 }
+
+#[wasm_bingden] 
+pub fn get_historical_metrics() -> {
+    let historical_data = HistoricalStats{
+        labels: vec![
+            "Sat".to_string(),
+            "Sun".to_string(),
+            "Mon".to_string(),
+            "Tue".to_string(),
+            "Wed".to_string(),
+            "Thu".to_string(),
+            "Fri".to_string(),
+        ],
+        dataset: vec![1200, 2100, 1800, 900, 1100, 1600, 150], 
+    };
+
+    serde_wasm_bindgen::to_value(&historical_data).unwrap()
+}
