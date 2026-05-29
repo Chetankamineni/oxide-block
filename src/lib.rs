@@ -71,7 +71,7 @@ pub fn generate_cosmetic_css(raw_data: &str) -> String {
 }
 
 #[wasm_bingden] 
-pub fn get_historical_metrics() -> {
+pub fn get_historical_metrics() -> JsValue{
     let historical_data = HistoricalStats{
         labels: vec![
             "Sat".to_string(),
