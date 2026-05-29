@@ -1,35 +1,124 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
-        width: 200px;
+        width: 350px;
         padding: 15px;
-        font-family: sans-serif;
-        text-align: center;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #121212; /* Dark UI theme to match reference */
+        color: #ffffff;
+        margin: 0;
       }
-      .count {
-        font-size: 24px;
-        font-weight: bold;
-        color: #e74c3c;
-        margin: 10px 0;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
       }
       .status {
         font-size: 12px;
         color: #2ecc71;
+        display: flex;
+        align-items: center;
+        gap: 4px;
       }
-      hr {
-        border: 0;
-        border-top: 1px solid #eee;
+      .chart-container {
+        position: relative;
+        height: 160px;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      .tabs-container {
+        display: flex;
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        padding: 3px;
+        margin-bottom: 15px;
+      }
+      .tab-btn {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #888;
+        padding: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+      .tab-btn.active {
+        background-color: #2d2d2d;
+        color: #ffffff;
+      }
+      .stats-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .stat-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #b3b3b3;
+      }
+      .stat-value {
+        font-weight: bold;
+        color: #ffffff;
+      }
+      .total-row {
+        border-top: 1px solid #2d2d2d;
+        padding-top: 10px;
+        margin-top: 5px;
       }
     </style>
   </head>
   <body>
-    <h3>OxideBlock</h3>
-    <div class="status">● Rust Engine Active</div>
-    <hr />
-    <div class="count" id="blocked-count">0</div>
-    <div style="font-size: 10px; color: #666">Requests Blocked</div>
+    <div class="header">
+      <h3>OxideBlock</h3>
+      <div class="status">● Rust Engine Active</div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="statsChart"></canvas>
+    </div>
+
+    <div class="tabs-container">
+      <button class="tab-btn" id="btn-actions">Actions</button>
+      <button class="tab-btn active" id="btn-stats">Statistics</button>
+    </div>
+
+    <div class="stats-list">
+      <div class="stat-item">
+        <span>Ads & Trackers</span>
+        <span class="stat-value" id="count-ads">0</span>
+      </div>
+      <div class="stat-item">
+        <span>Cosmetic Elements Hidden</span>
+        <span class="stat-value" id="count-cosmetic">0</span>
+      </div>
+      <div class="stat-item total-row">
+        <span style="color: #ffffff; font-weight: 500"
+          >Total Blocked Requests</span
+        >
+        <span
+          class="stat-value"
+          style="color: #e74c3c; font-size: 16px"
+          id="blocked-count"
+          >0</span
+        >
+      </div>
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>
