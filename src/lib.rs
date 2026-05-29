@@ -76,7 +76,7 @@ pub fn generate_cosmetic_css(raw_data: &str) -> String {
     css_output
 }
 
-#[wasm_bingden] 
+#[wasm_bindgen] 
 pub fn get_historical_metrics() -> JsValue{
     let historical_data = HistoricalStats{
         labels: vec![
